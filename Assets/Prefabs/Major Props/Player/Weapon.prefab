@@ -6382,9 +6382,10 @@ MonoBehaviour:
   gooProjectilePrefab: {fileID: 8772396109635877265, guid: aa52e7b2890cbdb4a88ae9dfeffa4786, type: 3}
   firePoint: {fileID: 8124650964907916214}
   launchForce: 20
-  gooFireCooldown: 0.3
+  gooFireCooldown: 0.7
   arcStrength: 0.1
   beamRange: 8
+  playAwakeText: 0
   firingModeBlue: 1
   attackDamage: 0
   beamMask:
