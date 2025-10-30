@@ -142,6 +142,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //wow controls!! malia look here!!!!!!
         float forward = Input.GetAxis("Vertical");
         float right = Input.GetAxis("Horizontal");
         float mouseXInput = Input.GetAxis("Mouse X");
