@@ -139,7 +139,7 @@ MonoBehaviour:
       Data3: -1762960983
       Data4: 1904680086
     Path: event:/Weapon/sfxAmmoRefill
-  walkSpeed: 3
+  walkSpeed: 4
   runSpeed: 7.5
   backpedalSpeedMultiplier: 0.7
   turnSpeedSensitivity: 1000
