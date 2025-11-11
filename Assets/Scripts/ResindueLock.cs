@@ -20,7 +20,7 @@ public class ResindueLock : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("ResidueLock destroyed but no elevator assigned.", this);
+            Debug.LogWarning("ResindueLock destroyed but no elevator assigned.", this);
         }
     }
 }
