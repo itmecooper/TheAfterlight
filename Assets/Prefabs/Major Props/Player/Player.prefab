@@ -56,7 +56,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 65
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -177,7 +177,7 @@ MonoBehaviour:
   hasLantern: 0
   lanternCooldown: 8
   placeholderLantern: {fileID: 0}
-  bigDoor: {fileID: 0}
+  clockHinge: {fileID: 0}
   healthRefillCount: 0
   ammoRefillHeldCount: 0
   explorationRewardCount: 0

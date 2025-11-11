@@ -91,7 +91,8 @@ public class PlayerController : MonoBehaviour
     public float lanternCooldown = 8f;
     private float lastLanternTime;
     public GameObject placeholderLantern;
-    public DoorMover bigDoor;
+    //public ObjectMover bigDoor;
+    public ObjectRotator clockHinge;
 
     [Header("Pickups")]
     public int healthRefillCount;
@@ -347,13 +348,46 @@ public class PlayerController : MonoBehaviour
 
     public bool CheckGrounded()
     {
+        //    float radius = controller.radius * 0.9f;
+        //    float groundedOffset = 0.1f;
+
+        //    Vector3 point1 = transform.position + Vector3.up * 0.1f;
+        //    Vector3 point2 = transform.position + Vector3.down * (controller.height / 2f - radius + groundedOffset);
+
+        //    return Physics.CheckCapsule(point1, point2, radius, groundMask, QueryTriggerInteraction.Ignore);
+
         float radius = controller.radius * 0.9f;
-        float groundedOffset = 0.1f;
 
-        Vector3 point1 = transform.position + Vector3.up * 0.1f;
-        Vector3 point2 = transform.position + Vector3.down * (controller.height / 2f - radius + groundedOffset);
+        // World-space position of the bottom sphere's center of the CharacterController
+        // Works even if controller.center is not zero.
+        Vector3 bottom = transform.position
+                       + Vector3.up * (controller.center.y - controller.height / 2f + radius);
 
-        return Physics.CheckCapsule(point1, point2, radius, groundMask, QueryTriggerInteraction.Ignore);
+        // Start a little bit above the bottom
+        Vector3 origin = bottom + Vector3.up * 0.05f;
+
+        // How far down we probe for ground
+        float groundCheckDistance = controller.skinWidth + 0.2f;
+
+        RaycastHit hit;
+        bool hasHit = Physics.SphereCast(
+            origin,
+            radius,
+            Vector3.down,
+            out hit,
+            groundCheckDistance,
+            groundMask,
+            QueryTriggerInteraction.Ignore
+        );
+
+        if (!hasHit)
+            return false;
+
+        // Optional: ignore very steep slopes
+        float maxSlopeAngle = controller.slopeLimit; // in degrees
+        float angle = Vector3.Angle(hit.normal, Vector3.up);
+
+        return angle <= maxSlopeAngle;
     }
 
     void ToggleCrouch()
@@ -419,12 +453,34 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
 
         //grounded check gizmos
-        Gizmos.DrawWireSphere(transform.position + Vector3.up * 0.1f, controller.radius * 0.9f);
-        Gizmos.DrawWireSphere(transform.position + Vector3.down * (controller.height / 2f - (controller.radius * 0.9f) + .01f), controller.radius * 0.9f);
-        Gizmos.DrawLine(transform.position + Vector3.up * 0.1f, transform.position + Vector3.down * (controller.height / 2f - (controller.radius * 0.9f) + .01f));
-        
-        
-        
+        //Gizmos.DrawWireSphere(transform.position + Vector3.up * 0.1f, controller.radius * 0.9f);
+        //Gizmos.DrawWireSphere(transform.position + Vector3.down * (controller.height / 2f - (controller.radius * 0.9f) + .01f), controller.radius * 0.9f);
+        //Gizmos.DrawLine(transform.position + Vector3.up * 0.1f, transform.position + Vector3.down * (controller.height / 2f - (controller.radius * 0.9f) + .01f));
+
+        //new grounded check gizmos
+
+        float radius = controller.radius * 0.9f;
+
+        // Bottom of the controller's capsule (sphere center)
+        Vector3 bottom = transform.position
+                       + Vector3.up * (controller.center.y - controller.height / 2f + radius);
+
+        // Origin and end of the ground check
+        Vector3 origin = bottom + Vector3.up * 0.05f;
+        float groundCheckDistance = controller.skinWidth + 0.2f;
+        Vector3 end = origin + Vector3.down * groundCheckDistance;
+
+        Gizmos.color = Color.yellow;
+
+        // Draw the cast line
+        Gizmos.DrawLine(origin, end);
+
+        // Sphere where the cast starts
+        Gizmos.DrawWireSphere(origin, radius);
+
+        // Sphere at the furthest point we consider for ground
+        Gizmos.DrawWireSphere(end, radius);
+
         //Gizmos.DrawWireSphere(transform.position + Vector3.down * 0.51f * playerScale, 0.5f * playerScale);
     }
 
@@ -520,7 +576,8 @@ public class PlayerController : MonoBehaviour
 
             case Pickup.PickupType.Lantern:
                 hasLantern = true;
-                bigDoor.Move();
+                //bigDoor.Move();
+                clockHinge.Open();
 
                 //if (!fakeGunEquipEvent.IsNull)
                 //{
