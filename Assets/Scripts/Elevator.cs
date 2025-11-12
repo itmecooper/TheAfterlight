@@ -22,10 +22,10 @@ public class Elevator : MonoBehaviour
     private int _currentIndex = 0;
     private int _direction = 1; // 1 = up in array, -1 = down
 
-    [Header("Rider Handling")]
-    public string playerTag = "Player";
+    //[Header("Rider Handling")]
+    //public string playerTag = "Player";
 
-    private Transform _originalPlayerParent;
+    //private Transform _originalPlayerParent;
 
     private void Awake()
     {
@@ -170,25 +170,26 @@ public class Elevator : MonoBehaviour
         return closestIndex;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag(playerTag))
-            return;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!other.CompareTag("Player"))
+    //        return;
 
-        // Cache whatever the player's parent was, then parent them to the elevator
-        _originalPlayerParent = other.transform.parent;
-        other.transform.SetParent(transform, true); // keep world position
-    }
+    //    // Cache whatever the player's parent was, then parent them to the elevator
+    //    _originalPlayerParent = other.transform.parent;
+    //    other.transform.SetParent(transform, true); // keep world position
+    //    Debug.Log("Parent set, I think"); //works but isn't preventing jittering
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (!other.CompareTag(playerTag))
-            return;
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (!other.CompareTag("Player"))
+    //        return;
 
-        // Restore the original parent when leaving the platform
-        other.transform.SetParent(_originalPlayerParent, true);
-        _originalPlayerParent = null;
-    }
+    //    // Restore the original parent when leaving the platform
+    //    other.transform.SetParent(_originalPlayerParent, true);
+    //    _originalPlayerParent = null;
+    //}
 
     // Optional: draw gizmos so you can see the path in the editor
     private void OnDrawGizmosSelected()

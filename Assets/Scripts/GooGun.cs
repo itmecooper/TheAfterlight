@@ -34,6 +34,12 @@ public class GooGun : MonoBehaviour
     private bool beamSoundPlaying = false;
     private bool playerIsDead = false;
 
+    [Header("Invalid Beam Target Feedback")]
+    public ParticleSystem invalidMuzzleParticle; //MAKE THIS
+    public float invalidFeedbackCooldown = 0.25f; //don't spam it
+    private float invalidCooldownTimer = 0f; //spam cooldown
+
+    [Header("GooFiring Feel")]
     public GameObject gooProjectilePrefab;
     public Transform firePoint;
     public float launchForce = 20f;
@@ -198,6 +204,8 @@ public class GooGun : MonoBehaviour
             }
         }
 
+        //changed a touch... here's the edits with some added comments
+        /*
         if (Input.GetMouseButton(0))
         {
             if (!firingModeBlue)
@@ -238,8 +246,87 @@ public class GooGun : MonoBehaviour
             playCont.currStaMana += playCont.staManaRegenRate * Time.deltaTime; //dont go above max, fix this buddy
             playCont.currStaMana = Mathf.Min(playCont.currStaMana, playCont.maxStaMana); //well this is cooler than what i usually do
         }
+        */
+
+        if (Input.GetMouseButton(0))
+        {
+            if (!firingModeBlue)
+            {
+                // (green mode / goo) unchanged
+                if (Time.time > lastGooFireTime + gooFireCooldown && playCont.currStaMana >= staManaGooCost)
+                {
+                    FireGoo();
+                    lastGooFireTime = Time.time;
+                    playCont.currStaMana -= staManaGooCost;
+                }
+            }
+            else
+            {
+                // —— BLUE BEAM ——
+                // 1) pre-check viability
+                RaycastHit beamHit;
+                bool hasValidTarget = TryGetBeamHit(out beamHit);
+
+                // 2) enough resource AND valid target?
+                if (playCont.currStaMana >= staManaBeamDrain && hasValidTarget)
+                {
+                    // FIRE (valid only): render + sound + impact + damage
+                    FireBeam(beamHit); // CHANGED: pass hit
+                    lastBeamFireTime = Time.time;
+
+                    // 3) cost ONLY while valid beam is active
+                    playCont.currStaMana -= staManaBeamDrain * Time.deltaTime;
+
+                    // if resource just ran out, stop visuals next frame
+                    if (playCont.currStaMana < staManaBeamDrain)
+                    {
+                        DisableBeam();
+                    }
+                }
+                else
+                {
+                    // INVALID or NO RESOURCE: no drain, no beam render
+                    DisableBeam();
+
+                    // If it was invalid (not just out of juice), give muzzle puff
+                    if (!hasValidTarget)
+                        PlayInvalidFeedback();
+                }
+            }
+        }
+        else
+        {
+            DisableBeam();
+
+            // regen (unchanged)
+            float mostRecentFireTime = Mathf.Max(lastBeamFireTime, lastGooFireTime);
+            if (Time.time - mostRecentFireTime > playCont.staManaRegenDelay)
+                playCont.currStaMana += playCont.staManaRegenRate * Time.deltaTime;
+
+            playCont.currStaMana = Mathf.Min(playCont.currStaMana, playCont.maxStaMana);
+        }
 
         staManaSlider.value = playCont.currStaMana;
+
+        if (invalidCooldownTimer > 0f) invalidCooldownTimer -= Time.deltaTime;
+    }
+
+    bool TryGetBeamHit(out RaycastHit hit)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        return Physics.Raycast(ray, out hit, beamRange, beamMask);
+    }
+
+    //puff puff pass on bc you can't fire the beam broksi
+    //invalid target my dude
+    void PlayInvalidFeedback()
+    {
+        if (invalidCooldownTimer <= 0f)
+        {
+            if (invalidMuzzleParticle) invalidMuzzleParticle.Play();
+            invalidCooldownTimer = invalidFeedbackCooldown;
+            Debug.Log("leo please make a weak puff sound here and delete this line when you've done it");
+        }
     }
 
     void DisableBeam()
@@ -415,11 +502,48 @@ public class GooGun : MonoBehaviour
         StartCoroutine(FadeAndDestroy(burnMark, burnDuration)); // begone thot
     }
 
+    void FireBeam(RaycastHit hit)
+    {
+        if (!beamSoundPlaying)
+        {
+            StartBeamSound();
+        }
 
+        // enable and draw the line
+        beamLine.enabled = true;
+        beamLine.SetPosition(0, firePoint.position);
+        beamLine.SetPosition(1, hit.point);
+
+        // impact VFX at hit
+        if (!beamParticle.isPlaying) beamParticle.Play();
+        beamParticle.transform.position = hit.point;
+
+        // impact loop follows the hit
+        StartBeamImpactSound(hit.point);
+
+        // decals (skip enemies)
+        if (!hit.collider.CompareTag("Enemy"))
+        {
+            CreateBurnMark(hit);
+        }
+
+        // apply effects
+        if (hit.transform.TryGetComponent<EnemyController>(out EnemyController T))
+        {
+            T.ApplyBeam(Time.deltaTime);
+        }
+
+        if (hit.transform.TryGetComponent<Health>(out Health H))
+        {
+            H.TakeDamage(attackDamage);
+        }
+
+        Debug.DrawLine(firePoint.position, hit.point, Color.blue, 1f);
+    }
+
+    /*
     void FireBeam()
     {
-      
-
         beamLine.enabled = true;
 
         Ray ray;
@@ -492,4 +616,5 @@ public class GooGun : MonoBehaviour
         beamLine.SetPosition(0, firePoint.position);
         beamLine.SetPosition(1, hitPoint);
     }
+    */
 }
