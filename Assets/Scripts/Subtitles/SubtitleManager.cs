@@ -10,8 +10,8 @@ public class SubtitleManager : MonoBehaviour
 
     private Dictionary<string, SubtitleData> subtitleLookup = new();
 
-    public GameObject subtitleTextContainer;  // Assign in inspector
-    public TMP_Text subtitleText; // Assign in inspector
+    public GameObject subtitleTextContainer;  //assigned in inspector
+    public TMP_Text subtitleText; //assigned in inspector
     private Coroutine currentCoroutine;
 
     public float delayBetweenSubtitles = .25f;
@@ -35,7 +35,7 @@ public class SubtitleManager : MonoBehaviour
 
         var lines = tsvFile.text.Split('\n');
 
-        for (int i = 1; i < lines.Length; i++) // skip header
+        for (int i = 1; i < lines.Length; i++) //skip header
         {
             if (string.IsNullOrWhiteSpace(lines[i])) continue;
             var cells = lines[i].Split('\t');
@@ -96,7 +96,7 @@ public class SubtitleManager : MonoBehaviour
                 subtitleText.text = "";
                 subtitleTextContainer.gameObject.SetActive(false);
 
-                // small delay between subtitles
+                //small delay between subtitles
                 yield return new WaitForSeconds(delayBetweenSubtitles);
             }
             else
