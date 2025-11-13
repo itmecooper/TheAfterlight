@@ -18,9 +18,9 @@ public class ResindueLock : MonoBehaviour
         {
             releasedObject.Unlock();
         }
-        else
-        {
-            Debug.LogWarning("ResindueLock destroyed but no elevator assigned.", this);
-        }
+        //else
+        //{
+            //Debug.LogWarning("ResindueLock destroyed but no elevator assigned");
+        //}
     }
 }
