@@ -5,7 +5,7 @@
 			<value>Clock Opening</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{77e0befe-794f-4a22-8c71-6f7396c1cc11}</destination>
@@ -97,9 +97,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{f698d84f-47ff-45f0-bc45-c5bf34ddfe13}">
-		<property name="volume">
-			<value>-5.5</value>
-		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -123,9 +120,15 @@
 	<object class="MixerBusEffectChain" id="{36d95a1b-dff6-49e5-a55e-e2615c7b2de1}">
 		<relationship name="effects">
 			<destination>{5b0dbc1d-739c-4937-a865-6395243100cb}</destination>
+			<destination>{5c9b4f5a-f0a9-497b-b79f-0faa3f41ca8b}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{191c6ff0-d751-472c-b08b-1d8a93e87636}" />
 	<object class="MixerBusFader" id="{ef19568e-a8c9-4573-b964-8bcd20631318}" />
 	<object class="MixerBusFader" id="{5b0dbc1d-739c-4937-a865-6395243100cb}" />
+	<object class="SpatialiserEffect" id="{5c9b4f5a-f0a9-497b-b79f-0faa3f41ca8b}">
+		<property name="distanceRolloffType">
+			<value>1</value>
+		</property>
+	</object>
 </objects>

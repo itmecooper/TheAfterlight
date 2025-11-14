@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class Elevator : MonoBehaviour
 {
@@ -17,11 +19,16 @@ public class Elevator : MonoBehaviour
     [Tooltip("If true, elevator will not move until Unlock() is called.")]
     public bool startLocked = true;
 
+    [Header("FMOD Audio")]
+    public EventReference moveLoopEvent;
+    public EventReference stopEvent;
+
     private bool _isLocked;
     private Coroutine _moveRoutine;
     private int _currentIndex = 0;
     private int _direction = 1; // 1 = up in array, -1 = down
 
+    private EventInstance _moveInstance;
     //[Header("Rider Handling")]
     //public string playerTag = "Player";
 
@@ -69,6 +76,41 @@ public class Elevator : MonoBehaviour
         _moveRoutine = StartCoroutine(MoveLoop());
     }
 
+    private void StartMoveSound()
+    {
+        if (!moveLoopEvent.IsNull)
+        {
+            // Stop previous instance if any
+            if (_moveInstance.isValid())
+            {
+                _moveInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                _moveInstance.release();
+            }
+
+            _moveInstance = RuntimeManager.CreateInstance(moveLoopEvent);
+            RuntimeManager.AttachInstanceToGameObject(_moveInstance, transform, GetComponent<Rigidbody>());
+            _moveInstance.start();
+        }
+    }
+
+    private void StopMoveSound()
+    {
+        if (_moveInstance.isValid())
+        {
+            _moveInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            _moveInstance.release();
+            _moveInstance.clearHandle();
+        }
+    }
+
+    private void PlayStopSound()
+    {
+        if (!stopEvent.IsNull)
+        {
+            RuntimeManager.PlayOneShot(stopEvent, transform.position);
+        }
+    }
+
     private IEnumerator MoveLoop()
     {
         {
@@ -93,6 +135,8 @@ public class Elevator : MonoBehaviour
 
                 Vector3 targetPos = stops[nextIndex].position;
 
+                StartMoveSound();
+
                 // Move toward the next stop
                 while (Vector3.Distance(transform.position, targetPos) > 0.01f)
                 {
@@ -108,6 +152,9 @@ public class Elevator : MonoBehaviour
                 // Snap exactly to the stop
                 transform.position = targetPos;
                 _currentIndex = nextIndex;
+
+                StopMoveSound();
+                PlayStopSound();
 
                 // Wait at this stop before heading to the next
                 yield return new WaitForSeconds(waitTimeAtStops);
