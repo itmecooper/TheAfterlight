@@ -144,7 +144,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{0a91382c-802a-4b2a-9bde-483a33982f70}">
 		<property name="volume">
-			<value>-10.5</value>
+			<value>-8</value>
 		</property>
 		<property name="name">
 			<value>Male Land</value>
@@ -179,7 +179,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{09c8f52b-bd6c-44f7-b725-4ac5c21f3a63}">
 		<property name="volume">
-			<value>-11</value>
+			<value>-8</value>
 		</property>
 		<property name="name">
 			<value>Female Land</value>

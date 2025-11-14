@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{5705eb70-49fb-46c1-8c43-26d2cd03e2b7}">
+		<property name="assetPath">
+			<value>Background/Enviorment Sounds/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{458b073d-971b-4492-acf2-af40bab90cad}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using FMODUnity;
 
 public class ObjectRotator : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class ObjectRotator : MonoBehaviour
     [Tooltip("Optional: another hinge to open after this one finishes opening.")]
     public ObjectRotator nextToOpen;
     public bool triggerNextOnOpen = false;
+
+    [Header("Audio")]
+    public EventReference doorOpenSound;
+    public EventReference doorCloseSound;
 
     [Header("State")]
     public bool startOpen = false;
@@ -55,6 +60,21 @@ public class ObjectRotator : MonoBehaviour
 
     private IEnumerator RotateTo(bool targetOpen)
     {
+        if (targetOpen)
+        {
+            if (!doorOpenSound.IsNull)
+            {
+                RuntimeManager.PlayOneShot(doorOpenSound, transform.position);
+            }
+        }
+        else
+        {
+            if (!doorCloseSound.IsNull)
+            {
+                RuntimeManager.PlayOneShot(doorCloseSound, transform.position);
+            }
+        }
+
         _isRotating = true;
 
         Quaternion startRot = transform.localRotation;

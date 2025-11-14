@@ -6368,6 +6368,13 @@ MonoBehaviour:
       Data3: 289053069
       Data4: -1678828984
     Path: event:/Weapon/Switching Modes
+  beamFailSound:
+    Guid:
+      Data1: 1864312181
+      Data2: 1149351818
+      Data3: -496246350
+      Data4: 1693430644
+    Path: event:/Weapon/FailedBeam
   beamImpactLoopSound:
     Guid:
       Data1: 2010068037
@@ -6379,6 +6386,8 @@ MonoBehaviour:
   burnDuration: 5
   decalScale: {x: 0.15, y: 0.15, z: 0.15}
   decalOpacity: 0.25
+  invalidMuzzleParticle: {fileID: 0}
+  invalidFeedbackCooldown: 0.25
   gooProjectilePrefab: {fileID: 8772396109635877265, guid: aa52e7b2890cbdb4a88ae9dfeffa4786, type: 3}
   firePoint: {fileID: 8124650964907916214}
   launchForce: 20

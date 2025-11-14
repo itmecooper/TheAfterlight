@@ -11,6 +11,9 @@ public class GooGun : MonoBehaviour
     public EventReference gooFireSound;
     public EventReference beamLoopSound;
     public EventReference modeSwitchSound;
+    public EventReference beamFailSound;
+    private EventInstance beamFailInstance;
+    private bool beamFailSoundPlaying = false;
 
     [Header("FMOD Impact Loop")]
     public EventReference beamImpactLoopSound;
@@ -193,6 +196,7 @@ public class GooGun : MonoBehaviour
             else
             {
                 DisableBeam();
+                StopFailSound();
 
                 colorOverLifetime.color = new ParticleSystem.MinMaxGradient(greenParticles);
                 blueIndicator.material = blueUnlitMaterial;
@@ -297,6 +301,7 @@ public class GooGun : MonoBehaviour
         else
         {
             DisableBeam();
+            StopFailSound();
 
             // regen (unchanged)
             float mostRecentFireTime = Mathf.Max(lastBeamFireTime, lastGooFireTime);
@@ -325,6 +330,15 @@ public class GooGun : MonoBehaviour
         {
             if (invalidMuzzleParticle) invalidMuzzleParticle.Play();
             invalidCooldownTimer = invalidFeedbackCooldown;
+
+            if (!beamFailSound.IsNull && !beamFailSoundPlaying)
+            {
+                beamFailInstance = RuntimeManager.CreateInstance(beamFailSound);
+                beamFailInstance.set3DAttributes(RuntimeUtils.To3DAttributes(firePoint));
+                beamFailInstance.start();
+                beamFailSoundPlaying = true;
+            }
+
             Debug.Log("leo please make a weak puff sound here and delete this line when you've done it");
         }
     }
@@ -334,8 +348,17 @@ public class GooGun : MonoBehaviour
         beamLine.enabled = false;
         if (beamParticle.isPlaying) { beamParticle.Stop(); }
         StopBeamSound(); //please stop the musik
-        StopBeamSound();
         StopBeamImpactSound();
+    }
+
+    void StopFailSound()
+    {
+        if (beamFailSoundPlaying && beamFailInstance.isValid())
+        {
+            beamFailInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            beamFailInstance.release();
+            beamFailSoundPlaying = false;
+        }
     }
 
     private void ForceStopBeamImmediate()
@@ -358,6 +381,7 @@ public class GooGun : MonoBehaviour
             beamImpactInstance.release();
             beamImpactSoundPlaying = false;
         }
+        StopFailSound();
     }
 
     public void HandlePlayerDeath()
@@ -504,6 +528,8 @@ public class GooGun : MonoBehaviour
 
     void FireBeam(RaycastHit hit)
     {
+        StopFailSound();
+
         if (!beamSoundPlaying)
         {
             StartBeamSound();
