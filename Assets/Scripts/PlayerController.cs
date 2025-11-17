@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     public float crouchHeight = 1f;
     public float standHeight = 2f;
     public float crouchSpeedMultiplier = 0.8f;
-    public float crouchTransitionSpeed = 0.6f;
+    public float UNUSEDcrouchTransitionSpeed = 0.6f;
 
     [Header("Jump")]
     public bool isGrounded;
@@ -400,7 +400,7 @@ public class PlayerController : MonoBehaviour
             float centerOffset = (standHeight - crouchHeight) / 2f;
             controller.center -= new Vector3(0, centerOffset, 0);
             controller.height = crouchHeight;
-            //controller.height = Mathf.Lerp(, Time.deltaTime * crouchTransitionSpeed);
+            //controller.height = Mathf.Lerp(standHeight, crouchHeight, Time.deltaTime * crouchTransitionSpeed);
             //controller.center -= new Vector3(0, crouchHeight, 0);
 
             //moving to cam controller, testing:
