@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1b267bccf0c38f74a9779d8d24ae5478, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: baf3b3e8aa6a7664eae154e0577bb236, type: 2}
     - target: {fileID: 919132149155446097, guid: 1b267bccf0c38f74a9779d8d24ae5478, type: 3}
       propertyPath: m_Name
       value: model_collectibles_memoriallocket (2)

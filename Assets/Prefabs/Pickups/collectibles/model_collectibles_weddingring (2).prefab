@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3ea435b72a1a6dc42801e94cdb3d140d, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5567269cf20af2a48873cce1078a743a, type: 2}
     - target: {fileID: 919132149155446097, guid: 3ea435b72a1a6dc42801e94cdb3d140d, type: 3}
       propertyPath: m_Name
       value: model_collectibles_weddingring (2)

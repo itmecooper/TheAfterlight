@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0f0dab256fffa744d9adf90a72427879, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ad22f41b612349647b75e4c0ee04b803, type: 2}
     - target: {fileID: 919132149155446097, guid: 0f0dab256fffa744d9adf90a72427879, type: 3}
       propertyPath: m_Name
       value: model_collectibles_arsenic
