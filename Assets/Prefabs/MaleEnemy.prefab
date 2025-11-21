@@ -1694,7 +1694,7 @@ MonoBehaviour:
   currentBeamCharge: 0
   beamChargeRate: 30
   sneakBeamChargeBonus: 85
-  usualGlowItensity: -0.1
+  usualGlowItensity: 0.5
   maxGlowIntensity: 4.5
   glowCurveExponent: 3
   glowDecayRate: 5

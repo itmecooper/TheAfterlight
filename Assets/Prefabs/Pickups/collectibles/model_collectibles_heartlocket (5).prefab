@@ -135,3 +135,4 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  glowRingPrefab: {fileID: 79078492294969818, guid: 507da8d045d7fb349a146298e7572b54, type: 3}

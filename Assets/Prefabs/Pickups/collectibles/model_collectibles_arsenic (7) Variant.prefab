@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: pickupType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7362746297993749503, guid: 20a978af2550b6a48a5370dc3339b4de, type: 3}
+      propertyPath: glowRingPrefab
+      value: 
+      objectReference: {fileID: 79078492294969818, guid: 507da8d045d7fb349a146298e7572b54, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
