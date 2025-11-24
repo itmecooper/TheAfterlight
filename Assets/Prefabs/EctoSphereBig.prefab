@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 942df57e9c696ba40af233113ab881db, type: 2}
+  - {fileID: 2100000, guid: d06e82b4cfffd7f44adf0df0e091896e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,7 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 942df57e9c696ba40af233113ab881db, type: 2}
+  - {fileID: 2100000, guid: d06e82b4cfffd7f44adf0df0e091896e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growTime: 0.3
+  gooRefundAmt: 5
   impactSound:
     Guid:
       Data1: -2028609623
@@ -219,6 +220,11 @@ MonoBehaviour:
       Data3: 40248972
       Data4: 1163293472
     Path: event:/Weapon/Platform Destroy
+  maxBeamCharge: 1
+  beamChargeRate: 1
+  usualGlowIntensity: 0.1
+  maxGlowIntensity: 6
+  glowCurveExponent: 2
 --- !u!65 &4251945154184162357
 BoxCollider:
   m_ObjectHideFlags: 0
