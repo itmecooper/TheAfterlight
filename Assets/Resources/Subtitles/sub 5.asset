@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   speakerName: 'R.I.P. Co Rep:'
-  subtitleText: Sub 5
-  displayDuration: 3
+  stylePreset: 0
+  subtitleText: R.I.P. Co can help. Will help. More on that after we verify that
+    you can do the job you've signed up for.
+  displayDuration: 4
   voiceClip: {fileID: 0}

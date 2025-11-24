@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   speakerName: 'R.I.P. Co Rep:'
-  subtitleText: Sub 6
-  displayDuration: 3
+  stylePreset: 0
+  subtitleText: "Oh, are you kidding me - Crouch under the door. Yes, it\u2019s stuck.
+    Again."
+  displayDuration: 4
   voiceClip: {fileID: 0}

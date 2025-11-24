@@ -6,6 +6,11 @@ using FMOD.Studio;
 
 public class SubtitleTrigger : MonoBehaviour
 {
+    [Header("Trigger Behaviour")]
+    [Tooltip("If true, the sequence auto-starts when the player enters this trigger's collider.")]
+    public bool triggerOnEnter = true;
+
+    [Tooltip("Destroy this GameObject after the sequence (and events) finish.")]
     public bool destroyAfterUse = true;
 
     [Header("Subtitles")]
@@ -27,8 +32,28 @@ public class SubtitleTrigger : MonoBehaviour
         {
             hasTriggered = true;
             SubtitleManager.Instance?.PlaySubtitleSequence(subtitleLines, OnSubtitlesComplete);
-            PlayVoiceLines();
+            StartSequence();
         }
+    }
+
+    /// <summary>
+    /// Starts this subtitle sequence manually.
+    /// Can be called from UnityEvents, buttons, animation events, etc.
+    /// </summary>
+    public void StartSequence()
+    {
+        if (hasTriggered) return;         // prevent double-start
+        hasTriggered = true;
+
+        if (subtitleLines == null || subtitleLines.Count == 0)
+        {
+            // Nothing to play, just finish immediately
+            OnSubtitlesComplete();
+            return;
+        }
+
+        SubtitleManager.Instance?.PlaySubtitleSequence(subtitleLines, OnSubtitlesComplete);
+        PlayVoiceLines();
     }
 
     private void PlayVoiceLines()

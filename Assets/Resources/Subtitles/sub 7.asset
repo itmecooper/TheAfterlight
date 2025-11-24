@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   speakerName: 'R.I.P. Co Rep:'
-  subtitleText: Sub 7
-  displayDuration: 3
+  stylePreset: 0
+  subtitleText: "Ed over in Maintenance is \u2018reviewing funding options,\u2019
+    which is code for \u2018never.\u2019"
+  displayDuration: 4
   voiceClip: {fileID: 0}

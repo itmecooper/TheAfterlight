@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: sub 1
   m_EditorClassIdentifier: 
   id: 
-  speakerName: 'R.I.P. Co Rep:'
-  subtitleText: Sub 1
+  speakerName: '???:'
+  stylePreset: 0
+  subtitleText: Lost? Confused? No idea how you got here?
   displayDuration: 3
   voiceClip: {fileID: 0}

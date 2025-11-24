@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: sub 3
   m_EditorClassIdentifier: 
   id: 
-  speakerName: 'R.I.P. Co Rep:'
+  speakerName: 'RIP Co Rep:'
   stylePreset: 0
-  subtitleText: Sub 3
-  displayDuration: 3
+  subtitleText: Welcome to job training. And yes, this is a job. You signed up for
+    this. For your, uh.. It's probably a kid? It's usually a kid. Let me check my
+    notes...
+  displayDuration: 4
   voiceClip: {fileID: 0}

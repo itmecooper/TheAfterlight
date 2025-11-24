@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: sub 2
   m_EditorClassIdentifier: 
   id: 
-  speakerName: 'R.I.P. Co Rep:'
-  subtitleText: Sub 2
-  displayDuration: 3
+  speakerName: '???:'
+  stylePreset: 0
+  subtitleText: "No worries. Since you're hearing this, Spiritual Extraction was
+    successful and you\u2019re officially classified as a R.I.P. Co recoverable asset."
+  displayDuration: 4
   voiceClip: {fileID: 0}

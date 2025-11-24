@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   speakerName: 'R.I.P. Co Rep:'
-  subtitleText: Sub 4
+  stylePreset: 0
+  subtitleText: Ah, yep, your little girl. Poor thing.
   displayDuration: 3
   voiceClip: {fileID: 0}

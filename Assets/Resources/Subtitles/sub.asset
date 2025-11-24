@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   speakerName: '???:'
-  subtitleText: Hello! Sub 0.
+  stylePreset: 0
+  subtitleText: Rise and shine, buddy!
   displayDuration: 3
   voiceClip: {fileID: 0}
