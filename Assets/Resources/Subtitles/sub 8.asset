@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: sub 8
   m_EditorClassIdentifier: 
   id: 
-  subtitleText: 
+  subtitleText: Sub 8
   displayDuration: 3
   voiceClip: {fileID: 0}
