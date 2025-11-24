@@ -539,6 +539,24 @@ public class PlayerController : MonoBehaviour
     {
         switch (pickup.pickupType)
         {
+            case Pickup.PickupType.SceneExit:
+                SceneExitDestination sceneExit = pickup.GetComponent<SceneExitDestination>();
+
+                if (sceneExit == null)
+                {
+                    Debug.LogError("SceneExit pickup triggered, but no SceneExitDestination component was found!");
+                    break;
+                }
+
+                if (SceneLoader.Instance == null)
+                {
+                    Debug.LogError("SceneLoader.Instance is null — did you forget to put a SceneLoader in the starting scene?");
+                    break;
+                }
+
+                SceneLoader.Instance.LoadScene(sceneExit.nextSceneName);
+                return;
+
             case Pickup.PickupType.HealthRefill:
                 healthRefillCount++;
                 break;
@@ -577,7 +595,10 @@ public class PlayerController : MonoBehaviour
             case Pickup.PickupType.Lantern:
                 hasLantern = true;
                 //bigDoor.Move();
-                clockHinge.Open();
+                if (clockHinge != null)
+                {
+                    clockHinge.Open();
+                }
 
                 //if (!fakeGunEquipEvent.IsNull)
                 //{

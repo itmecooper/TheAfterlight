@@ -5,15 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Prototype1/Prototype1.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/Scenes/Prototype3/Prototype3.unity
-    guid: 8e793802515c3854f98ac488be76b0b9
   - enabled: 1
-    path: Assets/Scenes/Tutorial_Greyboxing/Tutorial_Greyboxing.unity
-    guid: 086e63ce206b6c24a84ad9d32997b3af
+    path: Assets/Scenes/Tutorial_Greyboxing/TutorialExpanded.unity
+    guid: 6f776a238005fdd4c8b0a96139355952
+  - enabled: 1
+    path: Assets/Scenes/Tutorial_Greyboxing/Vertical_Level_1.unity
+    guid: b7605e8c08d63314eb27af22cf4c59f7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
