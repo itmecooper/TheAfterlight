@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +6,12 @@ using FMOD.Studio;
 
 public class SubtitleTrigger : MonoBehaviour
 {
-    //public List<string> subtitleIDs = new();
     public bool destroyAfterUse = true;
+
+    [Header("Subtitles")]
     public List<SubtitleLine> subtitleLines;
 
+    //herm I don't think this goes here now. I think it gets attached to the data
     [Header("FMOD Voice Events")]
     public List<EventReference> voiceLineEvents;
     private EventReference evt;
@@ -25,12 +26,8 @@ public class SubtitleTrigger : MonoBehaviour
         if (!hasTriggered && other.CompareTag("Player"))
         {
             hasTriggered = true;
-            //StartCoroutine(PlaySubtitlesSequentially());
-            //SubtitleManager.Instance?.PlaySubtitleSequence(subtitleLines);
             SubtitleManager.Instance?.PlaySubtitleSequence(subtitleLines, OnSubtitlesComplete);
             PlayVoiceLines();
-
-            //if (destroyAfterUse) { Destroy(gameObject); }
         }
     }
 
@@ -40,6 +37,8 @@ public class SubtitleTrigger : MonoBehaviour
         {
             if (!evt.IsNull)
             {
+                Debug.LogWarning("I don't think this is the best way to play the voice lines," +
+                    " maybe check out the spot I marked for you to work in SubtitleManager.cs");
                 RuntimeManager.PlayOneShot(evt);
             }
         }
@@ -51,12 +50,3 @@ public class SubtitleTrigger : MonoBehaviour
         if (destroyAfterUse) Destroy(gameObject);
     }
 }
-    //private IEnumerator PlaySubtitlesSequentially()
-    //{
-    //    foreach (string id in subtitleIDs)
-    //    {
-    //        SubtitleData data = SubtitleManager.Instance.GetSubtitleData(id);
-    //        SubtitleManager.Instance.PlaySubtitle(id);
-    //        yield return new WaitForSeconds(data.displayDuration + 0.1f); // slight buffer
-    //    }
-    //}

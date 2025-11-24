@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class SubtitleManager : MonoBehaviour
 {
@@ -16,41 +17,47 @@ public class SubtitleManager : MonoBehaviour
 
     public float delayBetweenSubtitles = .25f;
 
+    [Header("Not sure if this works with fmod leo!")]
+    public AudioSource voiceAudioSource;
+
     private void Awake()
     {
+        //singleton moment
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        LoadSubtitlesFromTSV("Subtitles/tutorial_subtitles");
+        //haha not anymore! tsv sucked major ass
+        //LoadSubtitlesFromTSV("Subtitles/tutorial_subtitles");
+
+        LoadSubtitlesFromResources();
     }
 
-    private void LoadSubtitlesFromTSV(string path)
+    private void LoadSubtitlesFromResources()
     {
-        TextAsset tsvFile = Resources.Load<TextAsset>(path);
-        if (!tsvFile)
+        //loads all SubtitleData assets under Resources/Subtitles
+        SubtitleData[] allSubtitles = Resources.LoadAll<SubtitleData>("Subtitles");
+
+        subtitleLookup.Clear();
+
+        foreach (var data in allSubtitles)
         {
-            Debug.LogError("Subtitle TSV not found!");
-            return;
-        }
+            if (data == null) continue;
 
-        var lines = tsvFile.text.Split('\n');
+            string key = data.Id;
 
-        for (int i = 1; i < lines.Length; i++) //skip header
-        {
-            if (string.IsNullOrWhiteSpace(lines[i])) continue;
-            var cells = lines[i].Split('\t');
-
-            var data = new SubtitleData
+            if (subtitleLookup.ContainsKey(key))
             {
-                id = cells[0].Trim(),
-                subtitleText = cells[1].Trim(),
-                displayDuration = float.Parse(cells[2].Trim())
-            };
+                Debug.LogWarning($"Duplicate subtitle ID detected: {key} from asset {data.name}");
+                continue;
+            }
 
-            subtitleLookup[data.id] = data;
+            subtitleLookup[key] = data;
         }
+
+        Debug.Log($"SubtitleManager: Loaded {subtitleLookup.Count} subtitles from Resources/Subtitles.");
     }
 
+    // next two are for id based, single line play. shouldnt really be used i think
     public void PlaySubtitle(string id)
     {
         if (!subtitleLookup.TryGetValue(id, out SubtitleData data))
@@ -63,12 +70,33 @@ public class SubtitleManager : MonoBehaviour
         currentCoroutine = StartCoroutine(DisplaySubtitle(data));
     }
 
-    private System.Collections.IEnumerator DisplaySubtitle(SubtitleData data)
+    private IEnumerator DisplaySubtitle(SubtitleData data)
     {
+        if (data == null)
+        {
+            yield break;
+        }
+
         subtitleText.text = data.subtitleText;
         subtitleTextContainer.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(data.displayDuration);
+        float duration;
+
+        if (data.voiceClip != null && voiceAudioSource != null)
+        {
+            voiceAudioSource.PlayOneShot(data.voiceClip);
+        }
+
+        if (data.voiceClip != null && data.voiceClip.length > 0f)
+        {
+            duration = data.voiceClip.length;
+        }
+        else
+        {
+            duration = data.displayDuration;
+        }
+
+        yield return new WaitForSeconds(duration);
 
         subtitleText.text = "";
         subtitleTextContainer.gameObject.SetActive(false);
@@ -80,29 +108,61 @@ public class SubtitleManager : MonoBehaviour
         currentCoroutine = StartCoroutine(DisplaySubtitleSequence(lines, onComplete));
     }
 
-    private System.Collections.IEnumerator DisplaySubtitleSequence(List<SubtitleLine> lines, System.Action onComplete)
+    private IEnumerator DisplaySubtitleSequence(List<SubtitleLine> lines, System.Action onComplete)
     {
+        if (lines == null || lines.Count == 0)
+        {
+            onComplete?.Invoke();
+            yield break;
+        }
+
         foreach (var line in lines)
         {
-            if (subtitleLookup.TryGetValue(line.id, out SubtitleData data))
+            var data = line.subtitle;
+
+            if (data == null)
             {
-                subtitleText.text = data.subtitleText;
-                subtitleTextContainer.gameObject.SetActive(true);
+                Debug.LogWarning("SubtitleLine has no SubtitleData assigned.");
+                continue;
+            }
 
-                float duration = line.overrideDurationEnabled ? line.customDuration : data.displayDuration;
+            subtitleText.text = data.subtitleText;
+            subtitleTextContainer.gameObject.SetActive(true);
 
-                yield return new WaitForSeconds(duration);
+            if (data.voiceClip != null && voiceAudioSource != null)
+            {
+                voiceAudioSource.PlayOneShot(data.voiceClip);
+            }
 
-                subtitleText.text = "";
-                subtitleTextContainer.gameObject.SetActive(false);
+            float duration;
 
-                //small delay between subtitles
-                yield return new WaitForSeconds(delayBetweenSubtitles);
+            //override, then voice clip length, then the display duration in engine
+            if (line.overrideDurationEnabled && line.customDuration > 0f)
+            {
+                duration = line.customDuration;
+            }
+            else if (data.voiceClip != null && data.voiceClip.length > 0f)
+            {
+                duration = data.voiceClip.length;
             }
             else
             {
-                Debug.LogWarning($"Subtitle ID not found: {line.id}");
+                duration = data.displayDuration;
             }
+
+            if (duration <= 0f)
+            {
+                Debug.LogWarning("duration is 0 or less of this voiceline bro," +
+                    "defaulting to display duration. bad boi");
+                duration = data.displayDuration;
+            }
+
+            yield return new WaitForSeconds(duration);
+
+            subtitleText.text = "";
+            subtitleTextContainer.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(delayBetweenSubtitles);
         }
 
         onComplete?.Invoke();
