@@ -11,6 +11,9 @@ public class SubtitleData : ScriptableObject
     //reading the tooltip bro - leave empty
     public string id;
 
+    [Header("Speaker Name")]
+    public string speakerName;
+
     [TextArea]
     public string subtitleText; //the text to display
 

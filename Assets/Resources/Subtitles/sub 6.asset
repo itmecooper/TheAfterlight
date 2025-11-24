@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: sub 6
   m_EditorClassIdentifier: 
   id: 
+  speakerName: 'RIP Co Rep:'
   subtitleText: Sub 6
   displayDuration: 3
   voiceClip: {fileID: 0}

@@ -12,7 +12,9 @@ public class SubtitleManager : MonoBehaviour
     private Dictionary<string, SubtitleData> subtitleLookup = new();
 
     public GameObject subtitleTextContainer;  //assigned in inspector
+    public TMP_Text speakerNameText; //assigned in inspector
     public TMP_Text subtitleText; //assigned in inspector
+
     private Coroutine currentCoroutine;
 
     public float delayBetweenSubtitles = .25f;
@@ -77,6 +79,9 @@ public class SubtitleManager : MonoBehaviour
             yield break;
         }
 
+        if (speakerNameText != null)
+            speakerNameText.text = data.speakerName;
+
         subtitleText.text = data.subtitleText;
         subtitleTextContainer.gameObject.SetActive(true);
 
@@ -125,6 +130,9 @@ public class SubtitleManager : MonoBehaviour
                 Debug.LogWarning("SubtitleLine has no SubtitleData assigned.");
                 continue;
             }
+
+            if (speakerNameText != null)
+                speakerNameText.text = data.speakerName;
 
             subtitleText.text = data.subtitleText;
             subtitleTextContainer.gameObject.SetActive(true);
