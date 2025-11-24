@@ -55,7 +55,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.49
   m_SlopeLimit: 65
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7911379170256381802}
-  camController: {fileID: 0}
+  camController: {fileID: 4691347929619561808}
   health: 100
   maxHealth: 100
   regenRate: 0.2
@@ -151,7 +151,7 @@ MonoBehaviour:
   crouchHeight: 1
   standHeight: 2
   crouchSpeedMultiplier: 0.6
-  crouchTransitionSpeed: 6
+  UNUSEDcrouchTransitionSpeed: 0.6
   isGrounded: 0
   groundMask:
     serializedVersion: 2

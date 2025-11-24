@@ -547,21 +547,29 @@ public class GooGun : MonoBehaviour
         // impact loop follows the hit
         StartBeamImpactSound(hit.point);
 
-        // decals (skip enemies)
-        if (!hit.collider.CompareTag("Enemy"))
-        {
-            CreateBurnMark(hit);
-        }
+        //// decals (skip enemies)
+        //if (!hit.collider.CompareTag("Enemy"))
+        //{
+        //    CreateBurnMark(hit);
+        //}
 
         // apply effects
         if (hit.transform.TryGetComponent<EnemyController>(out EnemyController T))
         {
             T.ApplyBeam(Time.deltaTime);
         }
-
-        if (hit.transform.TryGetComponent<Health>(out Health H))
+        else if (hit.transform.TryGetComponent<PlacedGoo>(out PlacedGoo goo))
+        {
+            goo.ApplyBeam(Time.deltaTime);
+        }
+        else if (hit.transform.TryGetComponent<Health>(out Health H))
         {
             H.TakeDamage(attackDamage);
+            CreateBurnMark(hit);
+        }
+        else
+        {
+            CreateBurnMark(hit);
         }
 
         Debug.DrawLine(firePoint.position, hit.point, Color.blue, 1f);
