@@ -6,6 +6,11 @@ public class SubtitleData : ScriptableObject
     //vibed upgrade of old script, this is.. cleaner
     //this is a scriptable object asset!
     //create -> subtitles -> subtitleLine (put in the right folder plz)
+    public enum SpeakerStylePreset
+    {
+        Default,
+        Ghost
+    }
 
     [Header("Unique ID for code. If left empty, the asset's name is used.")]
     //reading the tooltip bro - leave empty
@@ -13,6 +18,7 @@ public class SubtitleData : ScriptableObject
 
     [Header("Speaker Name")]
     public string speakerName;
+    public SpeakerStylePreset stylePreset = SpeakerStylePreset.Default;
 
     [TextArea]
     public string subtitleText; //the text to display

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using static SubtitleData;
 
 public class SubtitleManager : MonoBehaviour
 {
@@ -11,9 +12,14 @@ public class SubtitleManager : MonoBehaviour
 
     private Dictionary<string, SubtitleData> subtitleLookup = new();
 
+    [Header("Ui Refs")]
     public GameObject subtitleTextContainer;  //assigned in inspector
     public TMP_Text speakerNameText; //assigned in inspector
     public TMP_Text subtitleText; //assigned in inspector
+
+    [Header("Speaker Style Presets")]
+    public Color defaultColor = new Color(1f, 0.8156863f, 0.1294118f);
+    public Color ghostColor = new Color(0.4712394f, 1f, 0.1294118f);
 
     private Coroutine currentCoroutine;
 
@@ -83,6 +89,8 @@ public class SubtitleManager : MonoBehaviour
             speakerNameText.text = data.speakerName;
 
         subtitleText.text = data.subtitleText;
+
+        ApplySpeakerStyle(data);
         subtitleTextContainer.gameObject.SetActive(true);
 
         float duration;
@@ -135,6 +143,8 @@ public class SubtitleManager : MonoBehaviour
                 speakerNameText.text = data.speakerName;
 
             subtitleText.text = data.subtitleText;
+
+            ApplySpeakerStyle(data);
             subtitleTextContainer.gameObject.SetActive(true);
 
             if (data.voiceClip != null && voiceAudioSource != null)
@@ -185,5 +195,43 @@ public class SubtitleManager : MonoBehaviour
 
         Debug.LogWarning($"Subtitle ID not found: {id}");
         return null;
+    }
+
+    private void ApplySpeakerStyle(SubtitleData data)
+    {
+        if (speakerNameText == null || subtitleText == null || data == null)
+            return;
+
+        Color c = defaultColor;
+        bool italic = false;
+
+        switch (data.stylePreset)
+        {
+            case SpeakerStylePreset.Default:
+                c = defaultColor;
+                italic = false;
+                break;
+
+            case SpeakerStylePreset.Ghost:
+                c = ghostColor;
+                italic = true;
+                break;
+        }
+
+        //apply color
+        speakerNameText.color = c;
+        //subtitleText.color = c;
+
+        //apply style
+        if (italic)
+        {
+            //speakerNameText.fontStyle = FontStyles.Italic;
+            subtitleText.fontStyle = FontStyles.Italic;
+        }
+        else
+        {
+            //speakerNameText.fontStyle = FontStyles.Normal;
+            subtitleText.fontStyle = FontStyles.Normal;
+        }
     }
 }
