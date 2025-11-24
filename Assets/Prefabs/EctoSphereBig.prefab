@@ -221,7 +221,7 @@ MonoBehaviour:
       Data4: 1163293472
     Path: event:/Weapon/Platform Destroy
   maxBeamCharge: 1.5
-  beamChargeRate: 1
+  beamChargeRate: 1.2
   usualGlowIntensity: 0.2
   maxGlowIntensity: 1.5
   glowCurveExponent: 2

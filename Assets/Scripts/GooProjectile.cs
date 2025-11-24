@@ -7,6 +7,12 @@ public class GooProjectile : MonoBehaviour
     public float lifetime = 5f;
     public float spawnOffset = .3f;
 
+    [Header("Goo Refund")]
+    private GameObject player;
+    private PlayerController playCont;
+    public float gooRefundAmt = 3f;
+
+
     [Header("FMOD Events")]
     public EventReference impactSound;
     public EventReference destroySound;
@@ -20,6 +26,8 @@ public class GooProjectile : MonoBehaviour
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("ProjectileGhostFoam"), LayerMask.NameToLayer("Player"));
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("ProjectileGhostFoam"), LayerMask.NameToLayer("Weapon"));
 
+        player = GameObject.Find("Player");
+        playCont = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -51,7 +59,17 @@ public class GooProjectile : MonoBehaviour
             //no infinite foam towers, sorry
             //Instantiate(gooPlacedPrefab, contact.point, gooRotation);
             //Instantiate(gooPlacedPrefab, contact.point, Quaternion.identity);
-            Instantiate(gooPlacedPrefab, spawnPosition, Quaternion.identity);
+            GameObject gooInstace = Instantiate(gooPlacedPrefab, spawnPosition, Quaternion.identity);
+
+            if (collision.collider.transform.CompareTag("MovingObject"))
+            {
+                gooInstace.transform.SetParent(collision.collider.transform, true);
+            }
+
+        }
+        else if (collision.gameObject.tag == "GhostFoam")
+        {
+            playCont.currStaMana = Mathf.Min(playCont.maxStaMana, playCont.currStaMana + gooRefundAmt);
         }
 
         Destroy(gameObject);
