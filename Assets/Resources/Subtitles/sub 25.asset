@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: It provides information about the risks and rewards ahead by highlighing
     objects of interest, like Echos, Elixers, or Momentos.
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

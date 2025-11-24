@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: Solidified Spirit Oil looks like the green glob in front of you.
     We call it Resin-due.
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: "When you\u2019re ready, broad the train. It\u2019s your ticket to
     the Afterlight."
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

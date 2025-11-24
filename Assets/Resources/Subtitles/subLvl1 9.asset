@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bd8cddc4d2f44243a714769d81ea284, type: 3}
-  m_Name: sub 5
+  m_Name: subLvl1 9
   m_EditorClassIdentifier: 
   id: 
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
-  subtitleText: But there's a disruption in the supply line. The pipes are running
-    empty.
-  displayDuration: 3
+  subtitleText: Replacing a bulb should be easy though, right?
+  displayDuration: 4
   voiceClip: {fileID: 0}

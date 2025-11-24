@@ -16,5 +16,5 @@ MonoBehaviour:
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
   subtitleText: Test it on Echos Containment, directly ahead of you.
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: Your secondary fire lobs raw Resin-Due, which will expand and harden
     into platforms you can stand on.
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

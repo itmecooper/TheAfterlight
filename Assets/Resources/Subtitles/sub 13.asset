@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: You can overcharge anything made of Resin-due with the TORCH's primary
     fire, including other Echos.
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

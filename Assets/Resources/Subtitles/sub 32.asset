@@ -16,5 +16,5 @@ MonoBehaviour:
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
   subtitleText: Survival. That's all it is.
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

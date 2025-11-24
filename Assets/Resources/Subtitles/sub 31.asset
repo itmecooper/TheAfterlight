@@ -16,5 +16,5 @@ MonoBehaviour:
   speakerName: 'Echo:'
   stylePreset: 1
   subtitleText: Mother-? Do you remember.. how pretty I was...?
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

@@ -16,5 +16,5 @@ MonoBehaviour:
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
   subtitleText: "You\u2019ll notice your gauge depleting as you fire."
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

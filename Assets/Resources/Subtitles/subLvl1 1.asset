@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bd8cddc4d2f44243a714769d81ea284, type: 3}
-  m_Name: sub 11
+  m_Name: subLvl1 1
   m_EditorClassIdentifier: 
   id: 
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
-  subtitleText: Look around for something particularly bright. And probably up high.
-  displayDuration: 3
+  subtitleText: So, your objective. Why Spirit Oil, right? Why the Afterlight?
+  displayDuration: 4
   voiceClip: {fileID: 0}

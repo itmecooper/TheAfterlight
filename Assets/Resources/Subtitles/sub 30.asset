@@ -16,5 +16,5 @@ MonoBehaviour:
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
   subtitleText: I'd suggest looking up. No one ever looks up in these things...
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

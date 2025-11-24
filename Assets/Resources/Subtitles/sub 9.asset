@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: Good stuff. Time for your eqiupment. That's the T.O.R.C.H. Multitool.
     That stands for...
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

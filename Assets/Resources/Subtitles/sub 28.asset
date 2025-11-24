@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: You can use either mode of the T.O.R.C.H to dispatch the loose Echo,
     or you can find a different way past.
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

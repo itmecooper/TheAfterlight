@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bd8cddc4d2f44243a714769d81ea284, type: 3}
-  m_Name: sub 8
+  m_Name: subLvl1 2
   m_EditorClassIdentifier: 
   id: 
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
-  subtitleText: Well, your kid certainly won't be getting treatment. Or anyone else,
-    for that matter.
-  displayDuration: 3
+  subtitleText: R.I.P. Co graciously built a beacon there - a lighthouse - which
+    draws in wandering Echos, where we can distill them into Spirit Oil and pipe
+    it back out.
+  displayDuration: 4
   voiceClip: {fileID: 0}

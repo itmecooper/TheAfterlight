@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: You're going into the Afterlight, the space between this world and
     the next.
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

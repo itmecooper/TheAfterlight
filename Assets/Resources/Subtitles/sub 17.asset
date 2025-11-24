@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: "Don\u2019t stress\u2014the T.O.R.C.H. draws ambient Resin-Due from
     the environment and refills over time."
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

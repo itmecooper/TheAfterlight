@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: The T.O.R.C.H. runs on Spirit Oil - the same thing you and the Echos
     are made of.
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}

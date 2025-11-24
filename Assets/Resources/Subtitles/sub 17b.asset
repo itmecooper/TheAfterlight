@@ -17,5 +17,5 @@ MonoBehaviour:
   stylePreset: 0
   subtitleText: Wherever you can collect an elixir, you might instead find a Memento
     Mori - something an Echo couldn't let go of, even after the end.
-  displayDuration: 3
+  displayDuration: 4
   voiceClip: {fileID: 0}
