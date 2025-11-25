@@ -16,6 +16,6 @@ MonoBehaviour:
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
   subtitleText: "Ed over in Maintenance is \u2018reviewing funding options,\u2019
-    which is code for \u2018never.\u2019"
+    which is code for \u2018never fixing it.\u2019"
   displayDuration: 4
   voiceClip: {fileID: 0}

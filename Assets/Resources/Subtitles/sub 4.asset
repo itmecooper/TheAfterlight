@@ -16,5 +16,5 @@ MonoBehaviour:
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
   subtitleText: Ah, yep, your little girl. Poor thing.
-  displayDuration: 3
+  displayDuration: 2.5
   voiceClip: {fileID: 0}

@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
-  subtitleText: Time for some agility.
+  subtitleText: Time to test your agility. Travel up, then forward.
   displayDuration: 4
   voiceClip: {fileID: 0}
