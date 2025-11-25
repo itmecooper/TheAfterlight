@@ -21,7 +21,8 @@ public class SubtitleTrigger : MonoBehaviour
     public List<EventReference> voiceLineEvents;
     private EventReference evt;
 
-    [Header("Event After Sequence")]
+    [Header("Events")]
+    public UnityEngine.Events.UnityEvent onSequenceBegin;
     public UnityEngine.Events.UnityEvent onSequenceComplete;
 
     private bool hasTriggered = false;
@@ -44,6 +45,8 @@ public class SubtitleTrigger : MonoBehaviour
     {
         if (hasTriggered) return;         // prevent double-start
         hasTriggered = true;
+
+        onSequenceBegin?.Invoke();
 
         if (subtitleLines == null || subtitleLines.Count == 0)
         {

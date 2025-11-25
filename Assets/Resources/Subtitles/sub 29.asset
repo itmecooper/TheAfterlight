@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
-  subtitleText: There's no wrong answer. It's up to you to play your way.
+  subtitleText: There's no wrong answer - Play your way.
   displayDuration: 4
   voiceClip: {fileID: 0}

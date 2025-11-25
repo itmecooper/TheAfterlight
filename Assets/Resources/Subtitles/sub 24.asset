@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
-  subtitleText: It's for detecting objects of interest, like Echos, Elixers, or Momentos.
+  subtitleText: The LANTERN is for detecting objects of interest, like Echos, Elixers,
+    or Momentos.
   displayDuration: 4
   voiceClip: {fileID: 0}

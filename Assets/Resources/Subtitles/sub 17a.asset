@@ -15,8 +15,8 @@ MonoBehaviour:
   id: 
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
-  subtitleText: "You can also quickly refill your gauges quickly with elixirs. You
-    can find these in the environment if you look around, or they\u2019re sometimes
+  subtitleText: "You can also quickly refill your gauges quickly with refill elixirs.
+    You can find these in the environment if you look around, or they\u2019re sometimes
     dropped by Echos."
   displayDuration: 4
   voiceClip: {fileID: 0}

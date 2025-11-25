@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
-  subtitleText: Good luck.
-  displayDuration: 4
+  subtitleText: Good luck, Ripper. We'll be watching.
+  displayDuration: 3
   voiceClip: {fileID: 0}

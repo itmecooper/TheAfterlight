@@ -16,5 +16,5 @@ MonoBehaviour:
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
   subtitleText: 'Why? Spirit Oil. '
-  displayDuration: 4
+  displayDuration: 3
   voiceClip: {fileID: 0}

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
-  subtitleText: Interesting. Is it selfless to risk failure, knowing it isn't you
-    who would pay the price?
+  subtitleText: Interesting. Is it selfless to risk failure, knowing it isn't just
+    you who would pay the price?
   displayDuration: 4
   voiceClip: {fileID: 0}

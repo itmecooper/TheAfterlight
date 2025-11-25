@@ -107,6 +107,8 @@ public class PlayerController : MonoBehaviour
     public TMP_Text healthDropUICount;
     public GameObject pickupPopupContainer;
     public TMP_Text pickupPopupTxt;
+    public SubtitleTrigger gunPickupTrigger;
+    public SubtitleTrigger lanternPickupTrigger;
 
     [Header("Other")]
     public GameObject overheadLight;
@@ -585,6 +587,7 @@ public class PlayerController : MonoBehaviour
 
             case Pickup.PickupType.FakeGun:
                 weapon.SetActive(true);
+                gunPickupTrigger.StartSequence();
 
                 if (!fakeGunEquipEvent.IsNull)
                 {
@@ -598,6 +601,11 @@ public class PlayerController : MonoBehaviour
                 if (clockHinge != null)
                 {
                     clockHinge.Open();
+                }
+
+                if (lanternPickupTrigger != null)
+                {
+                    lanternPickupTrigger.StartSequence();
                 }
 
                 //if (!fakeGunEquipEvent.IsNull)

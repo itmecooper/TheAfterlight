@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 
   speakerName: 'R.I.P. Co Rep:'
   stylePreset: 0
-  subtitleText: That's the other tool in your arsenal - the L.A.N.T.E.R.N.
+  subtitleText: Meet the other tool in your arsenal - the L.A.N.T.E.R.N.
   displayDuration: 4
   voiceClip: {fileID: 0}
