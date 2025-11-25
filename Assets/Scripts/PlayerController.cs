@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class PlayerController : MonoBehaviour
 {
@@ -601,6 +602,8 @@ public class PlayerController : MonoBehaviour
                 if (clockHinge != null)
                 {
                     clockHinge.Open();
+                    Light clockLight = clockHinge.GetComponentInChildren<Light>();
+                    clockLight.intensity = 0;
                 }
 
                 if (lanternPickupTrigger != null)
