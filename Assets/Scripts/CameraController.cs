@@ -5,6 +5,7 @@ public class CameraController : MonoBehaviour
     [Header("Hookups")]
     public Camera worldCamera;       // Main camera
     public Camera weaponCamera;      // Overlay camera for gun
+    public Camera babyVisionCam;
     public PlayerController controller;
     public Transform cameraRig;
 
@@ -66,7 +67,15 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         if (!worldCamera) worldCamera = GetComponent<Camera>();
-        if (!weaponCamera) weaponCamera = GetComponentInChildren<Camera>();
+        //if (!weaponCamera) weaponCamera = GetComponentInChildren<Camera>();
+        if (!weaponCamera)
+        {
+            Debug.LogError("Unassigned weapon cam bro!");
+        }
+        if (!babyVisionCam)
+        {
+            Debug.LogWarning("Unassigned babyvis cam bro!");
+        }
         if (!controller) controller = GetComponentInParent<PlayerController>();
         if (cameraRig == null) cameraRig = transform;
 
@@ -181,6 +190,10 @@ public class CameraController : MonoBehaviour
         //targetFOV = isCrouching ? (baseFOV + crouchFOVOffset) : baseFOV;
 
         worldCamera.fieldOfView = Mathf.Lerp(worldCamera.fieldOfView, targetFOV, Time.deltaTime * fovSmooth);
+        if (babyVisionCam != null)
+        {
+            babyVisionCam.fieldOfView = Mathf.Lerp(worldCamera.fieldOfView, targetFOV, Time.deltaTime * fovSmooth);
+        }
     }
 
     void HandleTilt()

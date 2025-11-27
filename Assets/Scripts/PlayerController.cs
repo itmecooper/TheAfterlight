@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController controller;
     public CameraController camController;
+    public GameObject babyVisionCam;
 
     [Header("Stats")]
     public float health = 100f;
@@ -90,7 +91,8 @@ public class PlayerController : MonoBehaviour
     public bool wantsToLantern = false;
     public bool hasLantern = false;
     public float lanternCooldown = 8f;
-    private float lastLanternTime;
+    public float lanternDuration = 6f;
+    private float nextAllowedLanternTime;
     public GameObject placeholderLantern;
     //public ObjectMover bigDoor;
     public ObjectRotator clockHinge;
@@ -141,7 +143,7 @@ public class PlayerController : MonoBehaviour
             gooGun = weapon.GetComponent<GooGun>();
         }
 
-        lastLanternTime = Time.time - lanternCooldown;
+        nextAllowedLanternTime = Time.time;
     }
 
     void Update()
@@ -640,12 +642,21 @@ public class PlayerController : MonoBehaviour
 
     public void TryLantern()
     {
-        if(hasLantern && Time.time >= lastLanternTime + lanternCooldown)
+        if(hasLantern && Time.time >= nextAllowedLanternTime)
         {
             placeholderLantern.SetActive(true);
+            babyVisionCam.SetActive(true);
 
-            lastLanternTime = Time.time;
+            nextAllowedLanternTime = Time.time + lanternCooldown;
+
+            Invoke(nameof(TurnOffLantern), lanternDuration);
         }
+    }
+
+    public void TurnOffLantern()
+    {
+        placeholderLantern.SetActive(false);
+        babyVisionCam.SetActive(false);
     }
 
     public void UseHeldHealthDrop()
