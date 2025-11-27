@@ -897,7 +897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4037469501634167033
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1312,7 +1312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8056412637421961603
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1361,7 +1361,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'WASD to move <br> Shift to run <br> Space to jump <br> Click to Shoot
-    <br> C for Switch Fire Mode
+    <br> C or hold right for Switch Fire Mode <br> Left Control to crouch <br> Q
+    lantern
+
+    WIP
 
 '
   m_isRightToLeft: 0
@@ -3330,7 +3333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6886792, g: 0.54713005, b: 0, a: 0.0627451}
+  m_Color: {r: 0.81492454, g: 1, b: 0.36320752, a: 0.011764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
