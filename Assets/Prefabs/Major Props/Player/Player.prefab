@@ -190,6 +190,8 @@ MonoBehaviour:
   healthDropUICount: {fileID: 0}
   pickupPopupContainer: {fileID: 0}
   pickupPopupTxt: {fileID: 0}
+  gunPickupTrigger: {fileID: 0}
+  lanternPickupTrigger: {fileID: 0}
   overheadLight: {fileID: 0}
   clickableRayMask:
     serializedVersion: 2
