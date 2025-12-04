@@ -3009,6 +3009,10 @@ PrefabInstance:
       value: FPlayerBod
       objectReference: {fileID: 0}
     - target: {fileID: 4525173762735945513, guid: d4d0a94f2d62ec544b588fabf1e4fb39, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525173762735945513, guid: d4d0a94f2d62ec544b588fabf1e4fb39, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ab2d1dc5f27764e4bbd35a56b184d529, type: 2}

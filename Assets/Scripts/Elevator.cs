@@ -5,7 +5,7 @@ using FMOD.Studio;
 
 public class Elevator : MonoBehaviour
 {
-    //STOLEN. almost all of it. merged with my other script like this that was shittier
+    //somewhat stolen. merged with my other script like this that was shittier
 
     [Header("Stops (in order)")]
     [Tooltip("World-space positions the elevator will stop at, e.g. [bottom, mid, top].")]
@@ -71,9 +71,10 @@ public class Elevator : MonoBehaviour
     private void StartMoving()
     {
         if (_moveRoutine != null)
+        {
             StopCoroutine(_moveRoutine);
-
-        _moveRoutine = StartCoroutine(MoveLoop());
+            _moveRoutine = StartCoroutine(MoveLoop());
+        }
     }
 
     private void StartMoveSound()
