@@ -73,8 +73,9 @@ public class Elevator : MonoBehaviour
         if (_moveRoutine != null)
         {
             StopCoroutine(_moveRoutine);
-            _moveRoutine = StartCoroutine(MoveLoop());
         }
+
+        _moveRoutine = StartCoroutine(MoveLoop());
     }
 
     private void StartMoveSound()
