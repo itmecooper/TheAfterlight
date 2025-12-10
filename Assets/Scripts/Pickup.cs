@@ -17,20 +17,20 @@ public class Pickup : MonoBehaviour
 
     [Header("Audio")]
     public EventReference sfxOnPickup;
-    public GameObject glowRingPrefab;
+    //public GameObject glowRingPrefab;
 
-    private void Start()
-    {
-        {
-            if (glowRingPrefab != null)
-            {
-                GameObject ring = Instantiate(glowRingPrefab, transform);
-                ring.transform.localPosition = Vector3.zero;   // center
-                ring.transform.localRotation = Quaternion.identity;
-            }
-        }
-        //mainCamera = Camera.main;
-    }
+    //private void Start()
+    //{
+    //    {
+    //        if (glowRingPrefab != null)
+    //        {
+    //            GameObject ring = Instantiate(glowRingPrefab, transform);
+    //            ring.transform.localPosition = Vector3.zero;   // center
+    //            ring.transform.localRotation = Quaternion.identity;
+    //        }
+    //    }
+    //    //mainCamera = Camera.main;
+    //}
 
     //private void LateUpdate()
     //{

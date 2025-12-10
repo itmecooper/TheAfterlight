@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1a252ae4967477d41b0fe7bf0da5f9b6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8881e538b0360bd4aafb09f8da483579, type: 2}
     - target: {fileID: 919132149155446097, guid: 1a252ae4967477d41b0fe7bf0da5f9b6, type: 3}
       propertyPath: m_Name
       value: model_scaffolding_small_bar_segment_malia

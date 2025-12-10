@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0de2d82ee7ac4c74f864c8eefe34824d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a3e24f83f4219d943869373cc3ca1453, type: 2}
+      objectReference: {fileID: 2100000, guid: b4b4b7abfe9205d458701ed3cd6c2565, type: 2}
     - target: {fileID: 919132149155446097, guid: 0de2d82ee7ac4c74f864c8eefe34824d, type: 3}
       propertyPath: m_Name
       value: model_parkbench_millen(2)
