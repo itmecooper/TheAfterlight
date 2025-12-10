@@ -51,7 +51,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: cbe4613132ebaba4781279a6a3d6472f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -2881445276239496059, guid: aef67d20564b2b64dad82b2da3c481d3, type: 3}
+      objectReference: {fileID: 2100000, guid: ab1af89b509410e48917cb64377ade6f, type: 2}
+    - target: {fileID: -7511558181221131132, guid: cbe4613132ebaba4781279a6a3d6472f, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ab1af89b509410e48917cb64377ade6f, type: 2}
     - target: {fileID: 919132149155446097, guid: cbe4613132ebaba4781279a6a3d6472f, type: 3}
       propertyPath: m_Name
       value: model_large_metal_scaffolding_isolated_malia
