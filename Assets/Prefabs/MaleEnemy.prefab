@@ -1809,16 +1809,17 @@ MonoBehaviour:
   startMaterialColor: {r: 0, g: 0, b: 0, a: 0}
   enemyRenderer: {fileID: 0}
   enemyAttackAnimator: {fileID: 0}
-  healthDrop: {fileID: 1182285976102392685, guid: 11a150d5ff3009242a40c912f376bf2d, type: 3}
-  combatReward: {fileID: 6265941510972648978, guid: 39dae636d6809d64db6fe64e9a4a39e7, type: 3}
-  ammoDrop: {fileID: 3965478413647577249, guid: 8dff0ae3120111b4394b0b2eb31645a4, type: 3}
+  healthDrop: {fileID: 6627975892372709897, guid: 7f4ebf332a05e3f4ba2ec218704edf7b, type: 3}
+  combatRewardTags: {fileID: 5486021923707470157, guid: a8e730975523ef14a8f38dd5f23c7893, type: 3}
+  combatRewardRing: {fileID: 419537311662138874, guid: 65fef0c0e0ff83746836a0294dd7fad2, type: 3}
+  ammoDrop: {fileID: 5245233234818715383, guid: 3bda4e1282b2d0940ab4cef78c34f922, type: 3}
   lastSeenLightProducer: {fileID: 0}
   headObject: {fileID: 382477327201543995}
   deathParticle: {fileID: 4907179594118903495, guid: e60687c2fb42a994abaa8532df74b5e0, type: 3}
   isPassive: 0
   maxSpeed: 0
   walkSpeed: 2
-  attackDamage: 8
+  attackDamage: 20
   aggression: 0
   lastAggression: 0
   switchAttentionFromLightToPlayerDistance: 8

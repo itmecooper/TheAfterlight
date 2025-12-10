@@ -140,10 +140,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.11495907
-  m_Height: 0.62599766
-  m_Direction: 1
-  m_Center: {x: -0.05846196, y: 0.14544138, z: -2.2048056e-17}
+  m_Radius: 0.3032713
+  m_Height: 1.190743
+  m_Direction: 2
+  m_Center: {x: -0.094418526, y: 0.052197546, z: -0.29748082}
 --- !u!114 &6718560653855786356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +164,6 @@ MonoBehaviour:
       Data3: -1316154954
       Data4: -1112646581
     Path: event:/Weapon/Pickups
-  glowRingPrefab: {fileID: 79078492294969818, guid: 507da8d045d7fb349a146298e7572b54, type: 3}
 --- !u!1001 &6940682297078828018
 PrefabInstance:
   m_ObjectHideFlags: 0

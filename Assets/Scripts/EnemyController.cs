@@ -53,7 +53,8 @@ public class EnemyController : MonoBehaviour
 
     public Animator enemyAttackAnimator;
     public GameObject healthDrop;
-    public GameObject combatReward;
+    public GameObject combatRewardTags;
+    public GameObject combatRewardRing;
     public GameObject ammoDrop;
 
     public GameObject lastSeenLightProducer;
@@ -155,10 +156,12 @@ public class EnemyController : MonoBehaviour
     public enum LootDropType
     {
         None,
-        HealthDrop,
+        HealthDropLeeches,
+        CombatRewardTags,
+        CombatRewardRing,
         AmmoDrop,
         RandomHealthOrAmmo,
-        CombatReward
+        //CombatReward
     }
 
     private void Awake()
@@ -816,7 +819,7 @@ public class EnemyController : MonoBehaviour
         if (currentBeamCharge >= maxBeamCharge)
         {
             if(!isFrozen) { DropSelectedItem(); };
-            Die(combatReward);
+            Die(combatRewardTags);
         }
 
         if (!isPassive) { SetState(EnemyState.ChasePlayer); }
@@ -884,7 +887,7 @@ public class EnemyController : MonoBehaviour
             case LootDropType.None:
                 return;
 
-            case LootDropType.HealthDrop:
+            case LootDropType.HealthDropLeeches:
                 Instantiate(healthDrop, dropPos, transform.rotation);
                 return;
 
@@ -904,8 +907,12 @@ public class EnemyController : MonoBehaviour
                 }
                 return;
 
-            case LootDropType.CombatReward:
-                Instantiate(combatReward, dropPos, transform.rotation);
+            case LootDropType.CombatRewardTags:
+                Instantiate(combatRewardTags, dropPos, transform.rotation);
+                return;
+
+            case LootDropType.CombatRewardRing:
+                Instantiate(combatRewardRing, dropPos, transform.rotation);
                 return;
         }
     }
@@ -946,7 +953,7 @@ public class EnemyController : MonoBehaviour
         StopAllCoroutines();
         //if it was holding a resource, it would just.. deparent it? or actually spawn it?
 
-        if (canister == combatReward)
+        if (canister == combatRewardTags || canister == combatRewardRing)
         {
             Vector3 dropPos = transform.position + Vector3.up * 1f;
             Instantiate(deathParticle, dropPos, transform.rotation);
