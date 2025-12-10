@@ -76,3 +76,10 @@ fmod_editor.log
 Assets/Plugins/FMOD/Cache
 /[Aa]ssets/StreamingAssets/**/*.bank
 /[Aa]ssets/StreamingAssets/**/*.bank.meta
+
+
+# Ignore all baked lighting data
+**/LightingData.asset
+**/LightingData.asset.meta
+**/LightmapSnapshot.asset
+**/LightmapSnapshot.asset.meta
