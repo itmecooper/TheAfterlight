@@ -55,6 +55,7 @@ public class EnemyController : MonoBehaviour
     public GameObject healthDrop;
     public GameObject combatRewardTags;
     public GameObject combatRewardRing;
+    public GameObject combatRewardLocket;
     public GameObject ammoDrop;
 
     public GameObject lastSeenLightProducer;
@@ -159,6 +160,7 @@ public class EnemyController : MonoBehaviour
         HealthDropLeeches,
         CombatRewardTags,
         CombatRewardRing,
+        CombatRewardLocket,
         AmmoDrop,
         RandomHealthOrAmmo,
         //CombatReward
@@ -914,6 +916,10 @@ public class EnemyController : MonoBehaviour
             case LootDropType.CombatRewardRing:
                 Instantiate(combatRewardRing, dropPos, transform.rotation);
                 return;
+
+            case LootDropType.CombatRewardLocket:
+                Instantiate(combatRewardRing, dropPos, transform.rotation);
+                return;
         }
     }
 
@@ -953,7 +959,7 @@ public class EnemyController : MonoBehaviour
         StopAllCoroutines();
         //if it was holding a resource, it would just.. deparent it? or actually spawn it?
 
-        if (canister == combatRewardTags || canister == combatRewardRing)
+        if (canister == combatRewardTags || canister == combatRewardRing || canister == combatRewardLocket)
         {
             Vector3 dropPos = transform.position + Vector3.up * 1f;
             Instantiate(deathParticle, dropPos, transform.rotation);

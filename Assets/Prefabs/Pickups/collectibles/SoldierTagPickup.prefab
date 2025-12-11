@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 54d5853e32aa79649a5f82d4288a39a3, type: 2}
+  - {fileID: 2100000, guid: 0d55b50b78c3b3144ab216ac5b96bd0a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,6 @@ MonoBehaviour:
       Data3: -1316154954
       Data4: -1112646581
     Path: event:/Weapon/Pickups
-  glowRingPrefab: {fileID: 79078492294969818, guid: 507da8d045d7fb349a146298e7572b54, type: 3}
 --- !u!1 &5486021923707470157
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +183,6 @@ MonoBehaviour:
       Data3: -1316154954
       Data4: -1112646581
     Path: event:/Weapon/Pickups
-  glowRingPrefab: {fileID: 79078492294969818, guid: 507da8d045d7fb349a146298e7572b54, type: 3}
 --- !u!1001 &6297642794509635530
 PrefabInstance:
   m_ObjectHideFlags: 0
