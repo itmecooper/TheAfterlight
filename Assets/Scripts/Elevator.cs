@@ -62,7 +62,7 @@ public class Elevator : MonoBehaviour
         if (!_isLocked) return;
         _isLocked = false;
 
-        if (stops != null && stops.Length > 1)
+        if (stops != null && stops.Length > 1 && gameObject.activeInHierarchy)
         {
             StartMoving();
         }

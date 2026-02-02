@@ -66,9 +66,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log($"CameraController started on {name}, ID {GetInstanceID()}");
-
-
+        //Debug.Log($"CameraController started on {name}, ID {GetInstanceID()}");
         if (!worldCamera) worldCamera = GetComponent<Camera>();
         //if (!weaponCamera) weaponCamera = GetComponentInChildren<Camera>();
         if (!weaponCamera)

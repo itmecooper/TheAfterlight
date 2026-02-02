@@ -553,7 +553,8 @@ public class PlayerController : MonoBehaviour
         Ray ray;
         Vector3 hitPoint;
 
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var cam = camController.worldCamera;
+        ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, 100f, torchRayMask, QueryTriggerInteraction.Ignore))
@@ -567,7 +568,7 @@ public class PlayerController : MonoBehaviour
 
         //moved E check inside....
         Ray clickableRay;
-        clickableRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        clickableRay = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit clickableHit;
 
         if (Physics.Raycast(clickableRay, out clickableHit, playerReach, clickableRayMask, QueryTriggerInteraction.Ignore))
