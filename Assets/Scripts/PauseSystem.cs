@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuPause : MonoBehaviour
+public class PauseSystem : MonoBehaviour
 {
     public static bool IsPaused = false;
 
@@ -9,6 +9,7 @@ public class MenuPause : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject settingsMenuUI;
     public GameObject voiceMenuUI;
+    public PlayerController controller;
     public Button continueButton;
     public Button settingsButton;
     public Button quitButton;
@@ -43,6 +44,7 @@ public class MenuPause : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         settingsMenuUI.SetActive(false);
+        controller.lockLook = false;
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -53,6 +55,7 @@ public class MenuPause : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         settingsMenuUI.SetActive(false);
+        controller.lockLook = true;
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

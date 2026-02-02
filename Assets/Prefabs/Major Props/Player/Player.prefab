@@ -143,7 +143,11 @@ MonoBehaviour:
   walkSpeed: 4
   runSpeed: 7.5
   backpedalSpeedMultiplier: 0.7
-  turnSpeedSensitivity: 1000
+  turnSpeedSensitivity: 8
+  accel: 30
+  inputDeadZone: 0.01
+  decel: 45
+  hardStopSpeed: 0.05
   currMoveVelocity: {x: 0, y: 0, z: 0}
   wantsToRun: 0
   canRun: 1
@@ -162,7 +166,7 @@ MonoBehaviour:
   torch: {fileID: 9059974070237676965}
   torchLightCone: {fileID: 6958272636585080502}
   playerEyesCam: {fileID: 8447939401402388698}
-  verticalLookSpeed: 1000
+  verticalLookSpeed: 8
   torchRot: {x: 0, y: 0, z: 0}
   eyesRot: {x: 0, y: 0, z: 0}
   torchRayMask:

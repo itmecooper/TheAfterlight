@@ -40,7 +40,8 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 3f;
     public float runSpeed = 6f;
     public float backpedalSpeedMultiplier = 0.7f;
-    public float turnSpeedSensitivity = 2500f;
+    public float turnSpeedSensitivity = 8f;
+    public float verticalLookSpeed = 8f;
     public float accel = 30f;
     public float inputDeadZone = .01f;
     public float decel = 45f;
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
     public bool wantsToRun = false;
     public bool canRun = true;
     public bool isRunning = false;
+    public bool lockLook = false;
 
     private Animator anim;
 
@@ -78,7 +80,6 @@ public class PlayerController : MonoBehaviour
     public GameObject torch;
     public GameObject torchLightCone;
     public GameObject playerEyesCam;
-    public float verticalLookSpeed = 180f;
     public Vector3 torchRot;
     public Vector3 eyesRot;
     public LayerMask torchRayMask;
@@ -128,7 +129,11 @@ public class PlayerController : MonoBehaviour
     private PlayerUI playerUI;
 
 
-
+    private void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     private void Start()
     {
@@ -203,7 +208,11 @@ public class PlayerController : MonoBehaviour
 
 
         //left to right visuals (yaw)
-        transform.Rotate(Vector3.up, mouseXInput * turnSpeedSensitivity * Time.deltaTime);
+        if (!lockLook)
+        {
+            transform.Rotate(Vector3.up, mouseXInput * turnSpeedSensitivity);
+        }
+        //transform.Rotate(Vector3.up, mouseXInput * turnSpeedSensitivity * Time.deltaTime);
 
         //up and down visuals
         //moved to cam controller
@@ -232,6 +241,7 @@ public class PlayerController : MonoBehaviour
             //currMoveVelocity = Vector3.zero;
 
             //very quick ease out instead of instant stop
+            //movement feels DEAD without this
             float r = 1f - Mathf.Exp(-decel * Time.deltaTime);
             currMoveVelocity = Vector3.Lerp(currMoveVelocity, Vector3.zero, r);
 

@@ -161,7 +161,7 @@ public class GooGun : MonoBehaviour
         // Already dead? do nothing.
         if (playerIsDead) return;
 
-        if (MenuPause.IsPaused)
+        if (PauseSystem.IsPaused)
         //return; // No gun on pause
         {
             if (!lastPaused)

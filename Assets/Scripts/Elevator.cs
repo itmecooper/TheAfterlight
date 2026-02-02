@@ -53,7 +53,7 @@ public class Elevator : MonoBehaviour
     {
         if (!_isLocked && stops != null && stops.Length > 1)
         {
-            StartMoving();
+            //StartMoving();
         }
     }
 

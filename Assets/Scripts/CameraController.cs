@@ -66,6 +66,9 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log($"CameraController started on {name}, ID {GetInstanceID()}");
+
+
         if (!worldCamera) worldCamera = GetComponent<Camera>();
         //if (!weaponCamera) weaponCamera = GetComponentInChildren<Camera>();
         if (!weaponCamera)
@@ -164,8 +167,11 @@ public class CameraController : MonoBehaviour
 
     void HandleRotation()
     {
+        if (controller.lockLook) return;
+
         float mouseYInput = Input.GetAxis("Mouse Y");
-        pitch += mouseYInput * -controller.verticalLookSpeed * Time.deltaTime;
+        //pitch += mouseYInput * -controller.verticalLookSpeed * Time.deltaTime;
+        pitch += mouseYInput * -controller.verticalLookSpeed;
         pitch = Mathf.Clamp(pitch, -80f, 80f);
     }
 
