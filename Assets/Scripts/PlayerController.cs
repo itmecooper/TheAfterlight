@@ -41,7 +41,12 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 6f;
     public float backpedalSpeedMultiplier = 0.7f;
     public float turnSpeedSensitivity = 2500f;
+    public float accel = 30f;
+    public float inputDeadZone = .01f;
+    public float decel = 45f;
+    public float hardStopSpeed = .05f;
     public Vector3 currMoveVelocity;
+    private Vector3 horizontalVelocity;
     public bool wantsToRun = false;
     public bool canRun = true;
     public bool isRunning = false;
@@ -149,8 +154,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //wow controls!! malia look here!!!!!!
-        float forward = Input.GetAxis("Vertical");
-        float right = Input.GetAxis("Horizontal");
+        float forward = Input.GetAxisRaw("Vertical");
+        float right = Input.GetAxisRaw("Horizontal");
         float mouseXInput = Input.GetAxis("Mouse X");
         float mouseYInput = Input.GetAxis("Mouse Y");
         wantsToRun = Input.GetKey(KeyCode.LeftShift);
@@ -193,6 +198,8 @@ public class PlayerController : MonoBehaviour
         }
 
         HandleMovement(forward, right, wantsToRun);
+        Vector3 totalMove = horizontalVelocity + fallVelocity;
+        controller.Move(totalMove * Time.deltaTime);
 
 
         //left to right visuals (yaw)
@@ -214,22 +221,37 @@ public class PlayerController : MonoBehaviour
     public void HandleMovement(float forward, float right, bool wantsToRun)
     {
 
-        //cleaner internet code
+        Vector3 inputRaw = new Vector3(right, 0f, forward);
 
-        float targetMoveSpeed;
+        bool noInput = inputRaw.sqrMagnitude < inputDeadZone * inputDeadZone;
 
-        Vector3 inputDir = new Vector3(right, 0, forward).normalized;
-
-        //no more speed up when running diagonally "Clamp diagonal movement to not exceed magnitude 1"
-        if (inputDir.magnitude > 1f)
+        //stop instantly (or it did until I changed it some) //just dont fucking slide okay
+        if (noInput)
         {
-            inputDir.Normalize();
+            //horizontalVelocity = Vector3.zero;
+            //currMoveVelocity = Vector3.zero;
+
+            //very quick ease out instead of instant stop
+            float r = 1f - Mathf.Exp(-decel * Time.deltaTime);
+            currMoveVelocity = Vector3.Lerp(currMoveVelocity, Vector3.zero, r);
+
+            //hard snap when smol
+            if (currMoveVelocity.magnitude < hardStopSpeed)
+                currMoveVelocity = Vector3.zero;
+
+            horizontalVelocity = currMoveVelocity;
+
+            anim.SetFloat("Speed", 0f);
+            return;
         }
+
+        Vector3 inputDir = inputRaw.normalized;
 
         bool backtracking = (forward < 0f && Mathf.Abs(right) < 0.1f);
         isRunning = CanRun(forward, right, backtracking);
 
         //no running backwards, but allows strafing, just no straight back
+        float targetMoveSpeed;
         if (backtracking)
         {
             //canRun = false;
@@ -246,8 +268,32 @@ public class PlayerController : MonoBehaviour
 
         Vector3 targetVelocity = transform.TransformDirection(inputDir) * targetMoveSpeed;
 
-        currMoveVelocity = Vector3.Lerp(currMoveVelocity, targetVelocity, 0.4f); //.2-.3 is "FPS standard" but it feels too slidy
-        controller.Move(currMoveVelocity * Time.deltaTime);
+        ////currMoveVelocity = Vector3.Lerp(currMoveVelocity, targetVelocity, 0.4f); //.2-.3 is "FPS standard" but it feels too slidy
+        ////this actually causes the extra half step by taking so long
+        ////yoinked something a bit better
+        //if (inputDir.sqrMagnitude < 0.0001f)
+        //{
+        //    currMoveVelocity = Vector3.zero;   //NO slide only stop
+        //}
+        //else
+        //{
+        //    float accel = 30f; //tune
+        //    float t = 1f - Mathf.Exp(-accel * Time.deltaTime);
+        //    currMoveVelocity = Vector3.Lerp(currMoveVelocity, targetVelocity, t); //preserves smooth start
+        //}
+        //controller.Move(currMoveVelocity * Time.deltaTime);
+
+        //smooth start
+        float t = 1f - Mathf.Exp(-accel * Time.deltaTime);
+        currMoveVelocity = Vector3.Lerp(currMoveVelocity, targetVelocity, t);
+
+        //keep zero Y for horizontal velocity
+        currMoveVelocity.y = 0f;
+
+        horizontalVelocity = currMoveVelocity;
+
+        //if (Time.frameCount % 2 == 0)
+        //    Debug.Log($"Axis H={right:F3} V={forward:F3}");
 
         //doesnt actually change anything, this is just the trigger for the animator to know to change the animation
         float animVelo;
@@ -319,11 +365,11 @@ public class PlayerController : MonoBehaviour
         }
 
         //jump jump jump jump (w/ spicy new internet code)
-        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
             //calculate initial velocity needed to reach jumpHeight
             fallVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityUp);
-            jumpBufferCounter = 0; //"consume buffer"
+            jumpBufferCounter = 0f; //"consume buffer"
 
             if (!jumpEvent.IsNull)
             {
@@ -345,10 +391,13 @@ public class PlayerController : MonoBehaviour
         //set fall velocity on touchdown
         if (isGrounded && fallVelocity.y < 0)
         {
-            fallVelocity.y = -2f; //small stick-to-ground force
+            fallVelocity.y = -2f; //little push to ground force
         }
 
-        controller.Move(fallVelocity * Time.deltaTime);
+        //controller.Move(fallVelocity * Time.deltaTime);
+        //keep xz zero (gravity only here)
+        fallVelocity.x = 0f;
+        fallVelocity.z = 0f;
     }
 
     public bool CheckGrounded()
