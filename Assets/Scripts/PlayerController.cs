@@ -367,6 +367,11 @@ public class PlayerController : MonoBehaviour
         //jump buffer ("stores jump input for a short time")
         if (jump)
         {
+            if (isCrouching)
+            {
+                ToggleCrouch();
+            }
+
             jumpBufferCounter = jumpBufferTime;
         }
         else

@@ -144,6 +144,7 @@ MonoBehaviour:
   runSpeed: 7.5
   backpedalSpeedMultiplier: 0.7
   turnSpeedSensitivity: 8
+  verticalLookSpeed: 8
   accel: 30
   inputDeadZone: 0.01
   decel: 45
@@ -152,6 +153,7 @@ MonoBehaviour:
   wantsToRun: 0
   canRun: 1
   isRunning: 0
+  lockLook: 0
   isCrouching: 0
   crouchHeight: 1
   standHeight: 2
@@ -166,7 +168,6 @@ MonoBehaviour:
   torch: {fileID: 9059974070237676965}
   torchLightCone: {fileID: 6958272636585080502}
   playerEyesCam: {fileID: 8447939401402388698}
-  verticalLookSpeed: 8
   torchRot: {x: 0, y: 0, z: 0}
   eyesRot: {x: 0, y: 0, z: 0}
   torchRayMask:
@@ -912,7 +913,7 @@ MonoBehaviour:
   crouchPitchAnimAmount: 2
   crouchDipAnimOffset: 0.5
   crouchPitchAnimOffset: 5
-  bobFrequency: 1
+  bobFrequency: 2
   bobAmplitude: 0.04
   bobSmooth: 2
   runBobAmplitudeMultiplier: 3

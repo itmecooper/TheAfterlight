@@ -132,8 +132,10 @@ public class CameraController : MonoBehaviour
         //    lightAdjustmentsTargetPos,
         //    Time.deltaTime * camSmoothSpeed);
 
+        Vector3 bob = GetHeadbobOffset();
+
         Vector3 smoothedBasePos = Vector3.SmoothDamp(
-            cameraRig.localPosition - GetHeadbobOffset(),
+            cameraRig.localPosition - bob,
             lightAdjustmentsTargetPos,
             ref cameraVelocity, // Vector3 cameraVelocity; at class scope
             1f / camSmoothSpeed
@@ -141,7 +143,7 @@ public class CameraController : MonoBehaviour
 
 
         //add the head bob as it is a big adjustment (high-frequency) and not a little one
-        cameraRig.localPosition = smoothedBasePos + GetHeadbobOffset();
+        cameraRig.localPosition = smoothedBasePos + bob;
 
         //apply cam rotation (pitch & tilt)
         cameraRig.localRotation = Quaternion.Euler(pitch, 0f, currentTilt);
