@@ -39,7 +39,8 @@ public class PlayerController : MonoBehaviour
     [Header("Move")]
     public float walkSpeed = 3f;
     public float runSpeed = 6f;
-    public float backpedalSpeedMultiplier = 0.7f;
+    public float backpedalSpeedMultiplier = .7f;
+    public float backStrafeSpeedMultiplier = .85f;
     public float turnSpeedSensitivity = 8f;
     public float verticalLookSpeed = 8f;
     public float accel = 30f;
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 currMoveVelocity;
     private Vector3 horizontalVelocity;
     public bool wantsToRun = false;
-    public bool canRun = true;
+    //public bool canRun = true;
     public bool isRunning = false;
     public bool lockLook = false;
 
@@ -257,19 +258,29 @@ public class PlayerController : MonoBehaviour
 
         Vector3 inputDir = inputRaw.normalized;
 
-        bool backtracking = (forward < 0f && Mathf.Abs(right) < 0.1f);
-        isRunning = CanRun(forward, right, backtracking);
+        bool directlyBackpedaling = (forward < 0f && Mathf.Abs(right) < 0.1f);
+        bool backtrackOrBackStrafing = (forward < 0f);
+        isRunning = CanRun(forward, right, directlyBackpedaling);
 
         //no running backwards, but allows strafing, just no straight back
         float targetMoveSpeed;
-        if (backtracking)
+        
+        if (isCrouching) //moved this up bc this is slower
+        {
+            targetMoveSpeed = walkSpeed * crouchSpeedMultiplier;
+        }
+        else if (directlyBackpedaling)
         {
             //canRun = false;
             targetMoveSpeed = walkSpeed * backpedalSpeedMultiplier;
+            //targetMoveSpeed = walkSpeed * (Mathf.Max(Mathf.Abs(right), backpedalSpeedMultiplier));
         }
-        else if (isCrouching)
+        else if (backtrackOrBackStrafing)
         {
-            targetMoveSpeed = walkSpeed * crouchSpeedMultiplier;
+            //targetMoveSpeed = walkSpeed * backStrafeSpeedMultiplier;
+            //cuts run by 20%, then 20% again. cuts walk by 20%
+            targetMoveSpeed = (isRunning ? (runSpeed * backStrafeSpeedMultiplier) : walkSpeed) * backStrafeSpeedMultiplier;
+
         }
         else
         {
@@ -323,11 +334,11 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("Speed", targetVelocity.magnitude > 0 ? animVelo : 0);
     }
 
-    public bool CanRun(float forward, float right, bool backtracking)
+    public bool CanRun(float forward, float right, bool directlyBackpedaling)
     {
         bool isMoving = Mathf.Abs(forward) > 0.1f || Mathf.Abs(right) > 0.1f;
 
-        if (wantsToRun && isMoving && !backtracking)
+        if (wantsToRun && isMoving && !directlyBackpedaling)
         {
             if (isCrouching)
             {

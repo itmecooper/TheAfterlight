@@ -20,6 +20,8 @@ public class CameraController : MonoBehaviour
     [Header("Tilt")]
     public float maxTilt = 5f;
     public float tiltSmooth = 6f;
+    public float leanInSpeed = 10f;
+    public float returnSpeed = 16f;
 
     [Header("Crouch")]
     public bool isCrouching;
@@ -204,9 +206,15 @@ public class CameraController : MonoBehaviour
 
     void HandleTilt()
     {
-        float strafe = Input.GetAxis("Horizontal");
+        //float strafe = Input.GetAxis("Horizontal");
+        float strafe = Input.GetAxisRaw("Horizontal");
         float targetTilt = -strafe * maxTilt;
-        currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * tiltSmooth);
+        //currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * tiltSmooth);
+
+
+        float speed = (Mathf.Abs(strafe) > 0.01f) ? leanInSpeed : returnSpeed;
+        float t = 1f - Mathf.Exp(-speed * Time.deltaTime);
+        currentTilt = Mathf.Lerp(currentTilt, targetTilt, t);
     }
 
     void HandleCrouch()

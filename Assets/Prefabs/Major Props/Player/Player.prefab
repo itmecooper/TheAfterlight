@@ -143,6 +143,7 @@ MonoBehaviour:
   walkSpeed: 4
   runSpeed: 7.5
   backpedalSpeedMultiplier: 0.7
+  backStrafeSpeedMultiplier: 0.8
   turnSpeedSensitivity: 8
   verticalLookSpeed: 8
   accel: 30
@@ -151,7 +152,6 @@ MonoBehaviour:
   hardStopSpeed: 0.05
   currMoveVelocity: {x: 0, y: 0, z: 0}
   wantsToRun: 0
-  canRun: 1
   isRunning: 0
   lockLook: 0
   isCrouching: 0
@@ -904,6 +904,8 @@ MonoBehaviour:
   isRunning: 0
   maxTilt: 3
   tiltSmooth: 4
+  leanInSpeed: 4
+  returnSpeed: 5
   isCrouching: 0
   standCameraHeight: 0
   crouchCameraHeight: -0.5
