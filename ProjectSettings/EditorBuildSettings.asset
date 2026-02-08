@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Tutorial_Greyboxing/TutorialExpanded.unity
+    path: Assets/Scenes/BuildScenes/TutorialExpanded.unity
     guid: 6f776a238005fdd4c8b0a96139355952
   - enabled: 1
-    path: Assets/Scenes/Tutorial_Greyboxing/Vertical_Level_1.unity
+    path: Assets/Scenes/BuildScenes/Vertical_Level_1.unity
     guid: b7605e8c08d63314eb27af22cf4c59f7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
